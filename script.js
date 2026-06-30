@@ -103,7 +103,7 @@ const EXERCISES = [
     },
     {
         name: "6. Pont fessier",
-        desc: "Allongé sur le dos, montez le bassin vers le ciel en poussant sur vos pieds. Alignez genoux, hanches et épaules.",
+        desc: "Allongé sur le dos, montez le bassin vers le ciel en pushing sur vos pieds. Alignez genoux, hanches et épaules.",
         tip: "Contractez légèrement les fessiers en haut sans cambrer excessivement.",
         duration: 45,
         speech: "Le pont fessier. Montez le bassin en douceur pour réveiller l'arrière du corps.",
@@ -235,8 +235,9 @@ let currentExerciseIndex = 0;
 let exerciseTimerInterval = null;
 let timeLeft = 0;
 let isPaused = false;
-let isTransitioning = false; // Nouvelle variable d'état pour gérer le temps de pause
+let isTransitioning = false;
 let wakeLock = null;
+let cachedVoice = null; // Mémoire tampon pour bloquer la voix féminine d'iOS
 
 let settings = { voiceEnabled: true };
 let historyData = { totalRoutines: 0, currentStreak: 0, bestStreak: 0, lastSessionDate: "" };
@@ -311,6 +312,7 @@ function initAudioIOS() {
     }
 }
 
+// CORRECTION ICI : La fonction recherche et mémorise la voix féminine pour empêcher le bug iOS
 function speakText(text) {
     if (!settings.voiceEnabled || !('speechSynthesis' in window)) return;
     
@@ -318,27 +320,42 @@ function speakText(text) {
     
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "fr-FR";
-    utterance.rate = 0.75; // Garde la vitesse douce et ralentie
+    utterance.rate = 0.75; // Rythme lent et relaxant
     
-    const voices = window.speechSynthesis.getVoices();
-    let selectedVoice = voices.find(v => v.lang.includes("fr") && 
-        (v.name.toLowerCase().includes("google") || 
-         v.name.toLowerCase().includes("siri") || 
-         v.name.toLowerCase().includes("amelie") || 
-         v.name.toLowerCase().includes("aurelie") || 
-         v.name.toLowerCase().includes("premium")));
-         
-    if (!selectedVoice) {
-        selectedVoice = voices.find(v => v.lang.includes("fr"));
+    if (!cachedVoice) {
+        const voices = window.speechSynthesis.getVoices();
+        cachedVoice = voices.find(v => v.lang.includes("fr") && 
+            (v.name.toLowerCase().includes("amelie") || 
+             v.name.toLowerCase().includes("aurelie") || 
+             v.name.toLowerCase().includes("siri") ||
+             v.name.toLowerCase().includes("premium") ||
+             v.name.toLowerCase().includes("google")));
+             
+        if (!cachedVoice) {
+            cachedVoice = voices.find(v => v.lang.includes("fr") && 
+                (v.name.toLowerCase().includes("chantal") || v.name.toLowerCase().includes("audrey")));
+        }
+        if (!cachedVoice) {
+            cachedVoice = voices.find(v => v.lang.includes("fr"));
+        }
     }
-    if (selectedVoice) {
-        utterance.voice = selectedVoice;
+    
+    if (cachedVoice) {
+        utterance.voice = cachedVoice;
     }
     window.speechSynthesis.speak(utterance);
 }
 
 if ('speechSynthesis' in window) {
-    window.speechSynthesis.onvoiceschanged = () => {};
+    window.speechSynthesis.onvoiceschanged = () => {
+        const voices = window.speechSynthesis.getVoices();
+        if (!cachedVoice) {
+            cachedVoice = voices.find(v => v.lang.includes("fr") && 
+                (v.name.toLowerCase().includes("amelie") || 
+                 v.name.toLowerCase().includes("aurelie") ||
+                 v.name.toLowerCase().includes("siri")));
+        }
+    };
 }
 
 function startPreparationCountdown() {
@@ -383,7 +400,7 @@ function loadExercise(index) {
     document.getElementById("ex-name").textContent = ex.name;
     document.getElementById("ex-desc").textContent = ex.desc;
     document.getElementById("ex-tip").textContent = ex.tip;
-    document.getElementById("ex-illustration").innerHTML = ex.svg; // Réintégration propre des SVG
+    document.getElementById("ex-illustration").innerHTML = ex.svg;
     
     timeLeft = ex.duration;
     document.getElementById("ex-timer").textContent = timeLeft;
@@ -399,7 +416,6 @@ function loadExercise(index) {
     startExerciseTimer();
 }
 
-// Nouvelle fonction pour gérer la pause de 5 secondes pour se mettre en place
 function startTransitionToNext() {
     if (currentExerciseIndex >= EXERCISES.length - 1) {
         finishWorkoutSession();
@@ -412,13 +428,12 @@ function startTransitionToNext() {
     currentExerciseIndex++;
     const nextEx = EXERCISES[currentExerciseIndex];
     
-    // Interface en mode "Transition"
     document.getElementById("ex-name").textContent = `Prochain : ${nextEx.name}`;
     document.getElementById("ex-desc").textContent = "Mise en place... Prenez votre position.";
     document.getElementById("ex-tip").textContent = "Profitez de ces quelques secondes pour respirer.";
-    document.getElementById("ex-illustration").innerHTML = nextEx.svg; // Affiche déjà le SVG suivant en transparence/fixe
+    document.getElementById("ex-illustration").innerHTML = nextEx.svg;
     
-    timeLeft = 5; // 5 secondes de pause
+    timeLeft = 5; // Pause de transition de 5 secondes
     document.getElementById("ex-timer").textContent = timeLeft;
     
     speakText(`Attention, prochain exercice : ${nextEx.name}. Mettez-vous en place.`);
@@ -443,7 +458,7 @@ function startExerciseTimer() {
             document.getElementById("ex-timer").textContent = timeLeft;
             if (timeLeft <= 0) {
                 clearInterval(exerciseTimerInterval);
-                startTransitionToNext(); // Lance la pause de transition plutôt que de forcer la suite
+                startTransitionToNext();
             }
         }
     }, 1000);
@@ -461,14 +476,11 @@ function togglePause() {
     }
 }
 
-// Si l'utilisateur clique sur le bouton "Suivant" manuellement
 function forceNextExercise() {
     clearInterval(exerciseTimerInterval);
     if (isTransitioning) {
-        // Si on était en pause de transition, on force le début immédiat de l'exercice
         loadExercise(currentExerciseIndex);
     } else {
-        // Sinon, on bascule sur la transition de l'exercice d'après
         if (currentExerciseIndex < EXERCISES.length - 1) {
             startTransitionToNext();
         } else {
@@ -481,7 +493,7 @@ function previousExercise() {
     if (currentExerciseIndex > 0) {
         clearInterval(exerciseTimerInterval);
         currentExerciseIndex--;
-        loadExercise(currentExerciseIndex); // Retour direct sans transition
+        loadExercise(currentExerciseIndex);
     }
 }
 
