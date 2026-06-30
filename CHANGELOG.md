@@ -7,3 +7,7 @@
 > * **Gestion du rythme (Mode Zen) :** Ajout d'un compte à rebours automatique de 5 secondes entre chaque exercice pour se mettre en place sans se presser.
 > * **Guidage audio prédictif :** La voix annonce le prochain exercice dès le début de la transition.
 > * **Vitesse vocale optimisée :** Maintien du rythme ralenti ($0.75$) pour une ambiance relaxante.
+### 📝 Changelog — v1.3
+* **Extension du Mode Zen :** Allongement du temps de pause automatique entre chaque exercice à 12 secondes pour un confort de mise en place optimal.
+* **Affichage de version :** Ajout de l'indicateur visuel "v1.3" en bas de l'écran d'accueil pour le suivi du développement.
+* **Mémorisation vocale d'iOS :** Intégration définitive du correctif anti-rebasculement vocal d'Apple.
