@@ -1,215 +1,93 @@
 const EXERCISES = [
     {
         name: "1. Respiration consciente",
-        desc: "Assis ou allongé. Inspirez par le nez en gonflant le ventre, soufflez lentement par la bouche.",
-        tip: "Posez les mains sur votre ventre pour ressentir le mouvement du calme.",
+        desc: "Assis ou allongé. Inspirez par le nez en gonflant le ventre, soufflez lentement.",
+        tip: "Ressentez l'air frais qui entre, le calme qui s'installe.",
         duration: 45,
         speech: "Commencez par une respiration consciente. Inspirez le calme, expirez les tensions.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#4a90e2" />
-                    <stop offset="100%" stop-color="#50e3c2" />
-                </linearGradient>
-            </defs>
-            <circle cx="50" cy="50" r="35" fill="url(#grad1)" opacity="0.15"/>
-            <circle cx="50" cy="50" r="22" fill="none" stroke="url(#grad1)" stroke-width="3" stroke-linecap="round">
-                <animate attributeName="r" values="16;28;16" dur="4s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.4;1;0.4" dur="4s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="50" cy="50" r="6" fill="url(#grad1)"/>
-        </svg>`
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="50" r="35" fill="#c5a059" opacity="0.1"><animate attributeName="r" values="30;38;30" dur="5s" repeatCount="indefinite"/></circle><circle cx="50" cy="50" r="2" fill="#c5a059"/></svg>`
     },
     {
         name: "2. Bascule du bassin",
-        desc: "Allongé sur le dos, genoux pliés. Plaquez doucement le bas du dos au sol, puis relâchez.",
-        tip: "Mouvement très léger, idéal pour masser et libérer les lombaires.",
+        desc: "Allongé, genoux pliés. Plaquez le bas du dos au sol, puis relâchez.",
+        tip: "Un massage interne pour libérer vos lombaires.",
         duration: 45,
         speech: "Bascule du bassin. Pressez doucement le bas du dos contre le sol en soufflant.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ff9f43" />
-                    <stop offset="100%" stop-color="#ff6b6b" />
-                </linearGradient>
-            </defs>
-            <path d="M15 75 C 35 75, 45 55, 85 75" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round"/>
-            <path d="M25 75 C 40 75, 50 62, 75 75" fill="none" stroke="url(#grad2)" stroke-width="5" stroke-linecap="round">
-                <animate attributeName="d" values="M25 75 C 40 75, 50 62, 75 75; M25 75 C 40 75, 50 74, 75 75; M25 75 C 40 75, 50 62, 75 75" dur="4s" repeatCount="indefinite"/>
-            </path>
-            <circle cx="50" cy="68" r="4" fill="#ff6b6b">
-                <animate attributeName="cy" values="65;74;65" dur="4s" repeatCount="indefinite"/>
-            </circle>
-        </svg>`
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M20 60 Q 50 40, 80 60" fill="none" stroke="#c5a059" stroke-width="2" stroke-linecap="round"><animate attributeName="d" values="M20 60 Q 50 40, 80 60; M20 60 Q 50 58, 80 60; M20 60 Q 50 40, 80 60" dur="4s" repeatCount="indefinite"/></path></svg>`
     },
     {
         name: "3. Chat / Vache",
-        desc: "À quatre pattes. Arrondissez le dos en regardant vos genoux, puis creusez-le doucement en ouvrant la poitrine.",
-        tip: "Ne forcez pas sur le creux. Bougez au rythme de votre respiration.",
+        desc: "À quatre pattes. Arrondissez le dos, puis creusez-le doucement.",
+        tip: "Fluidifiez votre colonne vertébrale comme de l'eau.",
         duration: 50,
         speech: "Position du Chat et de la Vache. Enroulez et déroulez votre colonne vertébrale.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#1dd1a1" />
-                    <stop offset="100%" stop-color="#10ac84" />
-                </linearGradient>
-            </defs>
-            <path d="M20 65 Q 50 40, 80 65" fill="none" stroke="url(#grad3)" stroke-width="5" stroke-linecap="round">
-                <animate attributeName="d" values="M20 65 Q 50 40, 80 65; M20 60 Q 50 75, 80 60; M20 65 Q 50 40, 80 65" dur="5s" repeatCount="indefinite"/>
-            </path>
-            <line x1="30" y1="63" x2="30" y2="82" stroke="#48dbfb" stroke-width="4" stroke-linecap="round"/>
-            <line x1="70" y1="63" x2="70" y2="82" stroke="#48dbfb" stroke-width="4" stroke-linecap="round"/>
-        </svg>`
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M20 50 Q 50 20, 80 50" fill="none" stroke="#c5a059" stroke-width="2" stroke-linecap="round"><animate attributeName="d" values="M20 50 Q 50 20, 80 50; M20 40 Q 50 70, 80 40; M20 50 Q 50 20, 80 50" dur="6s" repeatCount="indefinite"/></path></svg>`
     },
     {
-        name: "4. Bird Dog (Oiseau-Chien)",
-        desc: "À quatre pattes. Tendez le bras droit devant et la jambe gauche derrière en gardant le dos bien droit. Changez de côté.",
-        tip: "Cherchez à vous grandir plutôt qu'à monter les membres trop haut.",
+        name: "4. Bird Dog",
+        desc: "À quatre pattes. Tendez bras et jambe opposés. Alternez.",
+        tip: "Cherchez la longueur, pas la hauteur.",
         duration: 50,
         speech: "L'Oiseau Chien. Tendez un bras et la jambe opposée pour stabiliser le dos.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#a55eea" />
-                    <stop offset="100%" stop-color="#4b7bec" />
-                </linearGradient>
-            </defs>
-            <rect x="35" y="52" width="30" height="6" rx="3" fill="#20bf6b"/>
-            <path d="M15 55 L 35 55 M 65 55 L 85 55" fill="none" stroke="url(#grad4)" stroke-width="4" stroke-linecap="round">
-                <animate attributeName="stroke-width" values="4;2;4" dur="4s" repeatCount="indefinite"/>
-            </path>
-            <line x1="42" y1="58" x2="42" y2="78" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
-            <line x1="58" y1="58" x2="58" y2="78" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
-        </svg>`
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><line x1="20" y1="50" x2="80" y2="50" stroke="#c5a059" stroke-width="2" stroke-dasharray="4 4"/><circle cx="50" cy="50" r="3" fill="#2c2c2c"/></svg>`
     },
     {
         name: "5. Ouverture des hanches",
-        desc: "Un genou à terre, faites un pas en avant. Avancez doucement le bassin pour étirer l'avant de la cuisse. Alternez à mi-temps.",
-        tip: "Gardez le buste bien droit et fier, respirez tranquillement.",
+        desc: "Un pas en avant, un genou au sol. Avancez doucement le bassin.",
+        tip: "Libérez le psoas, le muscle de l'âme.",
         duration: 50,
-        speech: "Ouverture des hanches. Étirez le psoas pour libérer les tensions du bas du dos.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ff4757" />
-                    <stop offset="100%" stop-color="#ff6b81" />
-                </linearGradient>
-            </defs>
-            <path d="M25 75 L 50 75 L 75 45 L 75 25" fill="none" stroke="url(#grad5)" stroke-width="5" stroke-linecap="round"/>
-            <circle cx="75" cy="16" r="6" fill="#ffa502"/>
-            <circle cx="50" cy="75" r="3" fill="#fff"/>
-        </svg>`
+        speech: "Ouverture des hanches. Étirez le psoas pour libérer le bas du dos.",
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M30 70 L 50 70 L 70 40 L 70 20" fill="none" stroke="#c5a059" stroke-width="2" stroke-linecap="round"/></svg>`
     },
     {
         name: "6. Pont fessier",
-        desc: "Allongé sur le dos, montez le bassin vers le ciel en poussant sur vos pieds. Alignez genoux, hanches et épaules.",
-        tip: "Contractez légèrement les fessiers en haut sans cambrer excessivement.",
+        desc: "Allongé, montez le bassin vers le ciel. Contractez doucement.",
+        tip: "Réveillez la force de votre base.",
         duration: 45,
-        speech: "Le pont fessier. Montez le bassin en douceur pour réveiller l'arrière du corps.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#2ed573" />
-                    <stop offset="100%" stop-color="#7bed9f" />
-                </linearGradient>
-            </defs>
-            <path d="M15 75 L 50 75 L 85 75" fill="none" stroke="#e0e0e0" stroke-width="2"/>
-            <path d="M15 75 L 50 50 L 85 75" fill="none" stroke="url(#grad6)" stroke-width="5" stroke-linecap="round">
-                <animate attributeName="d" values="M15 75 L 50 75 L 85 75; M15 75 L 50 48 L 85 75; M15 75 L 50 75 L 85 75" dur="4s" repeatCount="indefinite"/>
-            </path>
-        </svg>`
+        speech: "Le pont fessier. Montez le bassin en douceur.",
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M15 70 L 50 40 L 85 70" fill="none" stroke="#c5a059" stroke-width="2" stroke-linecap="round"><animate attributeName="d" values="M15 70 L 50 70 L 85 70; M15 70 L 50 40 L 85 70; M15 70 L 50 70 L 85 70" dur="5s" repeatCount="indefinite"/></path></svg>`
     },
     {
         name: "7. Rotation thoracique",
-        desc: "À quatre pattes, posez une main derrière la tête. Amenez le coude vers le ciel en tournant le haut du dos, puis revenez.",
-        tip: "Suivez le mouvement du coude avec votre regard. Changez de côté à votre rythme.",
+        desc: "À quatre pattes, main derrière la tête. Coude vers le ciel.",
+        tip: "Ouvrez votre cœur et votre souffle.",
         duration: 50,
-        speech: "Rotation thoracique. Ouvrez le haut du dos pour libérer la respiration.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#1e90ff" />
-                    <stop offset="100%" stop-color="#70a1ff" />
-                </linearGradient>
-            </defs>
-            <line x1="25" y1="65" x2="75" y2="65" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
-            <path d="M50 65 L 75 35" fill="none" stroke="url(#grad7)" stroke-width="5" stroke-linecap="round">
-                <animateTransform attributeName="transform" type="rotate" from="0 50 65" to="-40 50 65" dur="3s" repeatCount="indefinite" alternate="yes"/>
-            </path>
-            <circle cx="50" cy="65" r="4" fill="#ff4757"/>
-        </svg>`
+        speech: "Rotation thoracique. Ouvrez le haut du dos.",
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M50 70 L 80 30" fill="none" stroke="#c5a059" stroke-width="2" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 50 70" to="-45 50 70" dur="4s" repeatCount="indefinite" alternate="yes"/></path></svg>`
     },
     {
-        name: "8. Étirement des ischio-jambiers",
-        desc: "Allongé sur le dos, attrapez l'arrière d'une cuisse avec vos mains et tendez doucement la jambe vers le ciel.",
-        tip: "Gardez le pied souple. L'étirement doit être progressif et ne jamais faire mal.",
+        name: "8. Étirement Ischios",
+        desc: "Allongé, tendez une jambe vers le ciel doucement.",
+        tip: "De la douceur derrière les jambes, sans forcer.",
         duration: 45,
-        speech: "Étirement de l'arrière des cuisses. Allez-y très doucement, sans à-coups.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad8" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffa502" />
-                    <stop offset="100%" stop-color="#ff7f50" />
-                </linearGradient>
-            </defs>
-            <line x1="15" y1="75" x2="75" y2="75" stroke="#ccc" stroke-width="3" stroke-linecap="round"/>
-            <line x1="45" y1="75" x2="45" y2="30" stroke="url(#grad8)" stroke-width="5" stroke-linecap="round">
-                <animate attributeName="x2" values="45;58;45" dur="4s" repeatCount="indefinite"/>
-            </line>
-        </svg>`
+        speech: "Étirement de l'arrière des cuisses. Allez-y très doucement.",
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><line x1="30" y1="75" x2="70" y2="75" stroke="#ccc" stroke-width="1"/><line x1="50" y1="75" x2="50" y2="35" stroke="#c5a059" stroke-width="2"><animate attributeName="x2" values="50;60;50" dur="4s" repeatCount="indefinite"/></line></svg>`
     },
     {
-        name: "9. Ouverture des épaules",
-        desc: "Debout ou à genoux, entrelacez vos doigts derrière le dos. Ouvrez la poitrine et reculez doucement les épaules.",
-        tip: "Sentez l'ouverture du cœur et l'espace qui se crée au niveau des clavicules.",
+        name: "9. Ouverture épaules",
+        desc: "Entrelacez vos doigts derrière le dos. Ouvrez la poitrine.",
+        tip: "Dégagez le poids du monde de vos épaules.",
         duration: 40,
-        speech: "Ouverture des épaules et de la poitrine. Grandissez-vous et respirez.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad9" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#3742fa" />
-                    <stop offset="100%" stop-color="#f1f2f6" />
-                </linearGradient>
-            </defs>
-            <circle cx="50" cy="28" r="7" fill="#3742fa"/>
-            <path d="M50 35 Q 30 48, 50 78" fill="none" stroke="url(#grad9)" stroke-width="5" stroke-linecap="round"/>
-            <path d="M50 35 Q 70 42, 58 55" fill="none" stroke="#2ed573" stroke-width="4" stroke-linecap="round"/>
-        </svg>`
+        speech: "Ouverture des épaules. Grandissez-vous.",
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><path d="M50 40 Q 30 60, 50 85" fill="none" stroke="#c5a059" stroke-width="2"/><circle cx="50" cy="30" r="6" fill="#2c2c2c"/></svg>`
     },
     {
         name: "10. Respiration finale",
-        desc: "Fermez les yeux. Prenez une grande inspiration en levant les bras au ciel, puis relâchez tout en soufflant.",
-        tip: "Souriez. Votre corps est maintenant réveillé, disponible et prêt.",
+        desc: "Fermez les yeux. Levez les bras, puis relâchez tout.",
+        tip: "Souriez. Vous êtes prêt.",
         duration: 40,
-        speech: "Terminez par une grande inspiration en montant les bras au ciel. Votre corps est parfaitement réveillé.",
-        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad10" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffd32a" />
-                    <stop offset="100%" stop-color="#ff9f43" />
-                </linearGradient>
-            </defs>
-            <circle cx="50" cy="55" r="16" fill="url(#grad10)" opacity="0.8">
-                <animate attributeName="r" values="12;20;12" dur="4s" repeatCount="indefinite"/>
-            </circle>
-            <path d="M15 45 Q 50 15, 85 45" fill="none" stroke="#ffaf40" stroke-width="3" stroke-dasharray="5 5"/>
-        </svg>`
+        speech: "Dernière respiration. Vous êtes parfaitement réveillé.",
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="50" r="15" fill="#c5a059" opacity="0.3"><animate attributeName="r" values="10;25;10" dur="4s" repeatCount="indefinite"/></circle></svg>`
     }
 ];
 
 const QUOTES = [
-    "La meilleure journée commence par quelques minutes pour soi.",
-    "Chaque matin est une nouvelle opportunité.",
-    "La mobilité est un investissement pour toute la journée.",
-    "Le secret pour avancer, c'est de commencer en douceur.",
-    "Un pas après l'autre, vous construisez un corps plus fort et souple.",
-    "Écouter son corps est la plus belle preuve de bienveillance.",
-    "Le calme matinal prépare la force du jour.",
-    "La régularité bat l'intensité. Bravo pour aujourd'hui.",
-    "Prendre soin de son dos, c'est préserver sa liberté de bouger.",
-    "Votre corps vous remercie déjà pour ce moment de douceur.",
-    "Le mouvement, c'est la vie. La fluidité, c'est le bien-être."
+    "La paix commence par un souffle.",
+    "Ce matin est une page blanche, écrivez-la avec douceur.",
+    "Prendre soin de son corps, c'est honorer sa maison.",
+    "La fluidité du corps amène la clarté de l'esprit.",
+    "Le calme est le berceau de la force.",
+    "Aujourd'hui, avancez à votre propre rythme."
 ];
 
 let currentExerciseIndex = 0;
@@ -278,7 +156,7 @@ function setupEventListeners() {
     document.getElementById("btn-next").addEventListener("click", forceNextExercise);
     document.getElementById("btn-prev").addEventListener("click", previousExercise);
     document.getElementById("btn-stop").addEventListener("click", () => {
-        if (confirm("Arrêter la séance en cours ? VOS PROGRÈS NE SERONT PAS SAUVÉS.")) {
+        if (confirm("Arrêter la séance ?")) {
             stopWorkoutSession();
             showScreen("screen-home");
         }
@@ -295,46 +173,23 @@ function initAudioIOS() {
 
 function speakText(text) {
     if (!settings.voiceEnabled || !('speechSynthesis' in window)) return;
-    
     window.speechSynthesis.cancel();
-    
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "fr-FR";
     utterance.rate = 0.75; 
-    
     if (!cachedVoice) {
         const voices = window.speechSynthesis.getVoices();
         cachedVoice = voices.find(v => v.lang.includes("fr") && 
-            (v.name.toLowerCase().includes("amelie") || 
-             v.name.toLowerCase().includes("aurelie") || 
-             v.name.toLowerCase().includes("siri") ||
-             v.name.toLowerCase().includes("premium") ||
-             v.name.toLowerCase().includes("google")));
-             
-        if (!cachedVoice) {
-            cachedVoice = voices.find(v => v.lang.includes("fr") && 
-                (v.name.toLowerCase().includes("chantal") || v.name.toLowerCase().includes("audrey")));
-        }
-        if (!cachedVoice) {
-            cachedVoice = voices.find(v => v.lang.includes("fr"));
-        }
+            (v.name.toLowerCase().includes("amelie") || v.name.toLowerCase().includes("aurelie") || v.name.toLowerCase().includes("siri") || v.name.toLowerCase().includes("premium")));
     }
-    
-    if (cachedVoice) {
-        utterance.voice = cachedVoice;
-    }
+    if (cachedVoice) utterance.voice = cachedVoice;
     window.speechSynthesis.speak(utterance);
 }
 
 if ('speechSynthesis' in window) {
     window.speechSynthesis.onvoiceschanged = () => {
         const voices = window.speechSynthesis.getVoices();
-        if (!cachedVoice) {
-            cachedVoice = voices.find(v => v.lang.includes("fr") && 
-                (v.name.toLowerCase().includes("amelie") || 
-                 v.name.toLowerCase().includes("aurelie") ||
-                 v.name.toLowerCase().includes("siri")));
-        }
+        if (!cachedVoice) cachedVoice = voices.find(v => v.lang.includes("fr") && (v.name.toLowerCase().includes("amelie") || v.name.toLowerCase().includes("aurelie")));
     };
 }
 
@@ -342,24 +197,12 @@ function startPreparationCountdown() {
     showScreen("screen-prepare");
     let count = 3;
     const countDisplay = document.getElementById("countdown-display");
-    const textDisplay = document.getElementById("countdown-text");
-    
-    countDisplay.textContent = count;
-    textDisplay.textContent = "Trouvez votre position, respirez.";
-    speakText("Préparez-vous. Respire profondément.");
-
+    speakText("Préparez-vous. Trouvez votre souffle.");
     const countdownInterval = setInterval(() => {
         count--;
-        if (count > 0) {
-            countDisplay.textContent = count;
-        } else if (count === 0) {
-            countDisplay.textContent = "🌅";
-            textDisplay.textContent = "C'est parti !";
-            speakText("C'est parti.");
-        } else {
-            clearInterval(countdownInterval);
-            startWorkoutSession();
-        }
+        if (count > 0) countDisplay.textContent = count;
+        else if (count === 0) { countDisplay.textContent = "—"; speakText("C'est parti."); }
+        else { clearInterval(countdownInterval); startWorkoutSession(); }
     }, 1200);
 }
 
@@ -375,58 +218,38 @@ function startWorkoutSession() {
 function loadExercise(index) {
     if (index < 0 || index >= EXERCISES.length) return;
     const ex = EXERCISES[index];
-    
     isTransitioning = false;
     document.getElementById("ex-name").textContent = ex.name;
     document.getElementById("ex-desc").textContent = ex.desc;
     document.getElementById("ex-tip").textContent = ex.tip;
     document.getElementById("ex-illustration").innerHTML = ex.svg;
-    
     timeLeft = ex.duration;
     document.getElementById("ex-timer").textContent = timeLeft;
-    
-    const progressPercent = (index / EXERCISES.length) * 100;
-    document.getElementById("workout-progress-fill").style.width = `${progressPercent}%`;
+    document.getElementById("workout-progress-fill").style.width = `${((index+1) / EXERCISES.length) * 100}%`;
     document.getElementById("workout-exercise-counter").textContent = `${index + 1} / ${EXERCISES.length}`;
-    
     isPaused = false;
-    document.getElementById("btn-pause").textContent = "⏸️ Pause";
-    
+    document.getElementById("btn-pause").textContent = "Pause";
     speakText(ex.speech);
     startExerciseTimer();
 }
 
-// MISE À JOUR V1.3 : La pause automatique passe maintenant à 12 secondes
 function startTransitionToNext() {
-    if (currentExerciseIndex >= EXERCISES.length - 1) {
-        finishWorkoutSession();
-        return;
-    }
-
+    if (currentExerciseIndex >= EXERCISES.length - 1) { finishWorkoutSession(); return; }
     isTransitioning = true;
     clearInterval(exerciseTimerInterval);
-    
     currentExerciseIndex++;
     const nextEx = EXERCISES[currentExerciseIndex];
-    
-    document.getElementById("ex-name").textContent = `Prochain : ${nextEx.name}`;
-    document.getElementById("ex-desc").textContent = "Mise en place... Prenez votre position.";
-    document.getElementById("ex-tip").textContent = "Profitez de ces quelques secondes pour respirer.";
-    document.getElementById("ex-illustration").innerHTML = nextEx.svg;
-    
-    timeLeft = 12; // Modifié à 12 secondes pour la v1.3
+    document.getElementById("ex-name").textContent = `Suivant : ${nextEx.name}`;
+    document.getElementById("ex-desc").textContent = "Installez-vous sereinement...";
+    document.getElementById("ex-tip").textContent = "";
+    timeLeft = 12; 
     document.getElementById("ex-timer").textContent = timeLeft;
-    
-    speakText(`Attention, prochain exercice : ${nextEx.name}. Mettez-vous en place.`);
-    
+    speakText(`Transition. Prochain exercice : ${nextEx.name}.`);
     exerciseTimerInterval = setInterval(() => {
         if (!isPaused) {
             timeLeft--;
             document.getElementById("ex-timer").textContent = timeLeft;
-            if (timeLeft <= 0) {
-                clearInterval(exerciseTimerInterval);
-                loadExercise(currentExerciseIndex);
-            }
+            if (timeLeft <= 0) { clearInterval(exerciseTimerInterval); loadExercise(currentExerciseIndex); }
         }
     }, 1000);
 }
@@ -437,117 +260,54 @@ function startExerciseTimer() {
         if (!isPaused) {
             timeLeft--;
             document.getElementById("ex-timer").textContent = timeLeft;
-            if (timeLeft <= 0) {
-                clearInterval(exerciseTimerInterval);
-                startTransitionToNext();
-            }
+            if (timeLeft <= 0) { clearInterval(exerciseTimerInterval); startTransitionToNext(); }
         }
     }, 1000);
 }
 
 function togglePause() {
     isPaused = !isPaused;
-    const btn = document.getElementById("btn-pause");
-    if (isPaused) {
-        btn.textContent = "▶️ Reprendre";
-        speakText("Session en pause.");
-    } else {
-        btn.textContent = "⏸️ Pause";
-        speakText("C'est reparti.");
-    }
+    document.getElementById("btn-pause").textContent = isPaused ? "Reprendre" : "Pause";
+    speakText(isPaused ? "Pause" : "C'est reparti");
 }
 
 function forceNextExercise() {
     clearInterval(exerciseTimerInterval);
-    if (isTransitioning) {
-        loadExercise(currentExerciseIndex);
-    } else {
-        if (currentExerciseIndex < EXERCISES.length - 1) {
-            startTransitionToNext();
-        } else {
-            finishWorkoutSession();
-        }
-    }
+    if (isTransitioning) loadExercise(currentExerciseIndex);
+    else if (currentExerciseIndex < EXERCISES.length - 1) startTransitionToNext();
+    else finishWorkoutSession();
 }
 
 function previousExercise() {
-    if (currentExerciseIndex > 0) {
-        clearInterval(exerciseTimerInterval);
-        currentExerciseIndex--;
-        loadExercise(currentExerciseIndex);
-    }
+    if (currentExerciseIndex > 0) { clearInterval(exerciseTimerInterval); currentExerciseIndex--; loadExercise(currentExerciseIndex); }
 }
 
-function stopWorkoutSession() {
-    clearInterval(exerciseTimerInterval);
-    releaseWakeLock();
-}
+function stopWorkoutSession() { clearInterval(exerciseTimerInterval); releaseWakeLock(); }
 
 function finishWorkoutSession() {
     stopWorkoutSession();
     updateUserStreaks();
-    const randomQuote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
-    document.getElementById("congrats-quote").textContent = `« ${randomQuote} »`;
-    speakText("Routine terminée. Bravo et excellente journée.");
+    document.getElementById("congrats-quote").textContent = `« ${QUOTES[Math.floor(Math.random() * QUOTES.length)]} »`;
+    speakText("Séance terminée. Bonne journée.");
     showScreen("screen-congrats");
     updateHomeStatsDisplay();
 }
 
 function updateUserStreaks() {
-    const todayStr = getTodayDateString();
-    const lastSession = historyData.lastSessionDate;
+    const today = new Date().toISOString().split('T')[0];
     historyData.totalRoutines += 1;
-    
-    if (lastSession === "") {
-        historyData.currentStreak = 1;
-    } else if (lastSession === todayStr) {
-        // Déjà fait aujourd'hui
-    } else if (lastSession === getYesterdayDateString()) {
-        historyData.currentStreak += 1;
-    } else {
-        historyData.currentStreak = 1;
+    if (historyData.lastSessionDate !== today) {
+        historyData.currentStreak = (historyData.lastSessionDate === new Date(Date.now() - 864e5).toISOString().split('T')[0]) ? historyData.currentStreak + 1 : 1;
+        if (historyData.currentStreak > historyData.bestStreak) historyData.bestStreak = historyData.currentStreak;
     }
-    
-    if (historyData.currentStreak > historyData.bestStreak) {
-        historyData.bestStreak = historyData.currentStreak;
-    }
-    historyData.lastSessionDate = todayStr;
+    historyData.lastSessionDate = today;
     saveDataToStorage();
 }
 
 function updateHomeStatsDisplay() {
     document.getElementById("stat-current-streak").textContent = historyData.currentStreak;
-    document.getElementById("stat-best-streak").textContent = historyData.bestStreak;
     document.getElementById("stat-total-routines").textContent = historyData.totalRoutines;
-    
-    const last = historyData.lastSessionDate;
-    if (last === "") {
-        document.getElementById("stat-last-session").textContent = "Dernière séance : Aucune";
-    } else {
-        const parts = last.split("-");
-        document.getElementById("stat-last-session").textContent = `Dernière séance : ${parts[2]}/${parts[1]}/${parts[0]}`;
-    }
 }
 
-function getTodayDateString() {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-}
-
-function getYesterdayDateString() {
-    const d = new Date();
-    d.setDate(d.getDate() - 1);
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-}
-
-async function requestWakeLock() {
-    if ('wakeLock' in navigator) {
-        try { wakeLock = await navigator.wakeLock.request('screen'); } catch (err) {}
-    }
-}
-
-function releaseWakeLock() {
-    if (wakeLock !== null) {
-        wakeLock.release().then(() => wakeLock = null);
-    }
-}
+async function requestWakeLock() { if ('wakeLock' in navigator) try { wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {} }
+function releaseWakeLock() { if (wakeLock) { wakeLock.release().then(() => wakeLock = null); } }
