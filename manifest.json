@@ -1,0 +1,21 @@
+{
+  "short_name": "MorningNinja",
+  "name": "Morning Ninja - Mobilité Matinale",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#fbf7f0",
+  "theme_color": "#fbf7f0",
+  "display": "standalone",
+  "orientation": "portrait"
+}

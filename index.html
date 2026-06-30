@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Morning Ninja</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fbf7f0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Morning Ninja">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+
+    <!-- ÉCRAN D'ACCUEIL -->
+    <div id="screen-home" class="screen active">
+        <header class="app-header">
+            <div class="sunrise-logo">🌅</div>
+            <h1>Morning Ninja</h1>
+            <p class="subtitle">v1.0</p>
+        </header>
+
+        <main class="welcome-box">
+            <p class="greeting">Bonjour.</p>
+            <p class="intro-text">Prenons quelques minutes pour réveiller le corps en douceur et commencer la journée avec le sourire.</p>
+            
+            <button id="btn-start" class="btn btn-primary">
+                <span class="icon">▶️</span> Commencer la routine
+            </button>
+        </main>
+
+        <section class="stats-section">
+            <h2>🎯 Votre Historique</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">🔥</span>
+                    <span class="stat-value" id="stat-current-streak">0</span>
+                    <span class="stat-label">Série actuelle</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🏆</span>
+                    <span class="stat-value" id="stat-best-streak">0</span>
+                    <span class="stat-label">Meilleure série</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">✔</span>
+                    <span class="stat-value" id="stat-total-routines">0</span>
+                    <span class="stat-label">Total routines</span>
+                </div>
+            </div>
+            <p class="last-session" id="stat-last-session">Dernière séance : Aucune</p>
+        </section>
+
+        <footer class="home-footer">
+            <button id="btn-settings-open" class="btn btn-secondary">⚙️ Paramètres</button>
+        </footer>
+    </div>
+
+    <!-- ÉCRAN DE PRÉPARATION (COMPTE À REBOURS) -->
+    <div id="screen-prepare" class="screen">
+        <div class="prepare-container">
+            <h2 class="prepare-title">Préparez-vous...</h2>
+            <p class="prepare-instructions">Installez-vous confortablement.<br>Respire profondément.</p>
+            <div id="countdown-display" class="countdown-number">3</div>
+            <p id="countdown-text" class="countdown-subtext">Initialisation audio...</p>
+        </div>
+    </div>
+
+    <!-- ÉCRAN DE SÉANCE ACTIVE -->
+    <div id="screen-workout" class="screen">
+        <header class="workout-header">
+            <div class="workout-progress-container">
+                <div class="progress-bar-bg">
+                    <div id="workout-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+                </div>
+                <span id="workout-exercise-counter" class="exercise-counter">1 / 10</span>
+            </div>
+        </header>
+
+        <main class="workout-main">
+            <h2 id="ex-name" class="exercise-title">Nom de l'exercice</h2>
+            
+            <div class="illustration-box" id="ex-illustration"></div>
+
+            <div class="timer-box">
+                <div id="ex-timer" class="timer-number">45</div>
+                <span class="timer-unit">secondes restantes</span>
+            </div>
+
+            <p id="ex-desc" class="exercise-description">Description de l'exercice pour guider l'utilisateur en douceur.</p>
+            <p id="ex-tip" class="exercise-tip">Encouragement ou conseil bienveillant.</p>
+        </main>
+
+        <footer class="workout-footer">
+            <div class="control-buttons">
+                <button id="btn-prev" class="btn btn-control">⏮️ Précédent</button>
+                <button id="btn-pause" class="btn btn-control btn-accent">⏸️ Pause</button>
+                <button id="btn-next" class="btn btn-control">Suivant ⏭️</button>
+            </div>
+            <button id="btn-stop" class="btn btn-danger">⏹️ Arrêter la séance</button>
+        </footer>
+    </div>
+
+    <!-- ÉCRAN DE FIN DE SÉANCE -->
+    <div id="screen-congrats" class="screen">
+        <div class="congrats-container">
+            <div class="sun-icon">🌞</div>
+            <h2 class="congrats-title">Routine terminée !</h2>
+            <p class="congrats-subtitle">Bonne journée.</p>
+            
+            <div class="quote-box">
+                <p id="congrats-quote" class="quote-text">« La meilleure journée commence par quelques minutes pour soi. »</p>
+            </div>
+
+            <button id="btn-home-return" class="btn btn-primary">Retour à l'accueil</button>
+        </div>
+    </div>
+
+    <!-- ÉCRAN DES PARAMÈTRES -->
+    <div id="screen-settings" class="screen">
+        <header class="settings-header">
+            <h2>⚙️ Paramètres</h2>
+        </header>
+
+        <main class="settings-main">
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="toggle-voice" class="setting-label">🔈 Activer la voix</label>
+                    <p class="setting-desc">Annonce le nom des exercices et donne le rythme.</p>
+                </div>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="toggle-voice" checked>
+                    <span class="slider"></span>
+                </div>
+            </div>
+
+            <div class="setting-item danger-zone">
+                <div class="setting-info">
+                    <span class="setting-label-danger">Réinitialiser les données</span>
+                    <p class="setting-desc">Efface définitivement tout votre historique de routines.</p>
+                </div>
+                <button id="btn-reset-data" class="btn btn-danger-soft">Effacer</button>
+            </div>
+
+            <div class="about-box">
+                <h3>À propos</h3>
+                <p><strong>Morning Ninja</strong> est une routine de mobilité douce conçue pour réveiller le corps, délier les articulations et protéger les lombaires avant de commencer la journée.</p>
+                <p class="version-tag">Version de l'application : 1.0 (Stable)</p>
+            </div>
+        </main>
+
+        <footer class="settings-footer">
+            <button id="btn-settings-close" class="btn btn-secondary">Fermer et enregistrer</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
