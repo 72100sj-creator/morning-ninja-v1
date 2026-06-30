@@ -2,158 +2,181 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morning Ninja</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#fbf7f0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Morning Ninja">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <style>
+        :root {
+            --bg-color: #faf8f5;
+            --text-color: #2d3748;
+            --accent-color: #4a90e2;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px 24px;
+            box-shadow: var(--shadow);
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .screen { display: none; width: 100%; animation: fadeIn 0.4s ease; }
+        .screen.active { display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h1 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 8px; color: #1a202c; }
+        .subtitle { text-align: center; color: #718096; font-size: 15px; margin-bottom: 25px; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stat-card { background: #f7fafc; padding: 14px; border-radius: 16px; text-align: center; border: 1px solid #edf2f7; }
+        .stat-val { font-size: 20px; font-weight: 700; color: var(--accent-color); }
+        .stat-lbl { font-size: 11px; color: #a0aec0; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .stat-full { grid-column: span 2; }
+
+        .btn {
+            background: var(--accent-color); color: white; border: none; padding: 15px 20px;
+            border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer;
+            width: 100%; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn:active { transform: scale(0.98); opacity: 0.9; }
+        .btn-secondary { background: #edf2f7; color: #4a5568; margin-top: 10px; }
+        .btn-danger { background: #fff5f5; color: #e53e3e; border: 1px solid #fed7d7; margin-top: 25px; }
+
+        .illustration-container { height: 180px; margin: 15px 0; display: flex; justify-content: center; align-items: center; }
+        .timer-display { font-size: 54px; font-weight: 800; text-align: center; margin: 10px 0; color: #1a202c; font-variant-numeric: tabular-nums; }
+        .ex-title { font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 6px; }
+        .ex-text { color: #4a5568; text-align: center; font-size: 14px; margin-bottom: 10px; padding: 0 10px; }
+        .ex-tip-box { background: #ebf8ff; border-left: 4px solid #4299e1; padding: 10px 12px; border-radius: 0 12px 12px 0; font-size: 12px; color: #2b6cb0; margin-top: 10px; }
+        
+        .progress-bar { width: 100%; height: 6px; background: #edf2f7; border-radius: 3px; margin-top: 20px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent-color); width: 0%; transition: width 0.3s ease; }
+        .nav-controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+        .nav-controls .btn { padding: 12px 10px; font-size: 14px; }
+        
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #edf2f7; }
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e0; transition: .3s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+        input:checked + .slider { background-color: #48bb78; }
+        input:checked + .slider:before { transform: translateX(20px); }
+        
+        .quote-box { font-style: italic; text-align: center; color: #4a5568; padding: 20px 10px; margin-bottom: 20px; font-size: 15px; line-height: 1.6; }
+        .version-tag { text-align: center; font-size: 11px; color: #cbd5e0; margin-top: 20px; width: 100%; }
+    </style>
 </head>
 <body>
 
-    <!-- ÉCRAN D'ACCUEIL -->
-    <div id="screen-home" class="screen active">
-        <header class="app-header">
-            <div class="sunrise-logo">🌅</div>
-            <h1>Morning Ninja</h1>
-            <p class="subtitle">v1.0</p>
-        </header>
-
-        <main class="welcome-box">
-            <p class="greeting">Bonjour.</p>
-            <p class="intro-text">Prenons quelques minutes pour réveiller le corps en douceur et commencer la journée avec le sourire.</p>
-            
-            <button id="btn-start" class="btn btn-primary">
-                <span class="icon">▶️</span> Commencer la routine
-            </button>
-        </main>
-
-        <section class="stats-section">
-            <h2>🎯 Votre Historique</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-icon">🔥</span>
-                    <span class="stat-value" id="stat-current-streak">0</span>
-                    <span class="stat-label">Série actuelle</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-icon">🏆</span>
-                    <span class="stat-value" id="stat-best-streak">0</span>
-                    <span class="stat-label">Meilleure série</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-icon">✔</span>
-                    <span class="stat-value" id="stat-total-routines">0</span>
-                    <span class="stat-label">Total routines</span>
+    <div class="container">
+        <div id="screen-home" class="screen active">
+            <div>
+                <h1>Morning Ninja</h1>
+                <p class="subtitle">Réveil musculaire & mobilité douce</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div id="stat-current-streak" class="stat-val">0</div>
+                        <div class="stat-lbl">Série Actuelle</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="stat-best-streak" class="stat-val">0</div>
+                        <div class="stat-lbl">Meilleure Série</div>
+                    </div>
+                    <div class="stat-card stat-full">
+                        <div id="stat-total-routines" class="stat-val">0</div>
+                        <div class="stat-lbl">Routines Complétées</div>
+                    </div>
+                    <div id="stat-last-session" class="stat-lbl stat-full" style="text-align: center; margin-top: 5px; color:#718096;"></div>
                 </div>
             </div>
-            <p class="last-session" id="stat-last-session">Dernière séance : Aucune</p>
-        </section>
-
-        <footer class="home-footer">
-            <button id="btn-settings-open" class="btn btn-secondary">⚙️ Paramètres</button>
-        </footer>
-    </div>
-
-    <!-- ÉCRAN DE PRÉPARATION (COMPTE À REBOURS) -->
-    <div id="screen-prepare" class="screen">
-        <div class="prepare-container">
-            <h2 class="prepare-title">Préparez-vous...</h2>
-            <p class="prepare-instructions">Installez-vous confortablement.<br>Respire profondément.</p>
-            <div id="countdown-display" class="countdown-number">3</div>
-            <p id="countdown-text" class="countdown-subtext">Initialisation audio...</p>
+            
+            <div>
+                <button id="btn-start" class="btn">🌅 Commencer la routine</button>
+                <button id="btn-settings-open" class="btn btn-secondary">⚙️ Réglages</button>
+                <div class="version-tag">Version 1.3</div>
+            </div>
         </div>
-    </div>
 
-    <!-- ÉCRAN DE SÉANCE ACTIVE -->
-    <div id="screen-workout" class="screen">
-        <header class="workout-header">
-            <div class="workout-progress-container">
-                <div class="progress-bar-bg">
-                    <div id="workout-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
-                </div>
-                <span id="workout-exercise-counter" class="exercise-counter">1 / 10</span>
+        <div id="screen-prepare" class="screen">
+            <div style="text-align: center; margin-top: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 10px;">Préparez-vous...</h2>
+                <p id="countdown-text" style="color: #718096;"></p>
             </div>
-        </header>
-
-        <main class="workout-main">
-            <h2 id="ex-name" class="exercise-title">Nom de l'exercice</h2>
-            
-            <div class="illustration-box" id="ex-illustration"></div>
-
-            <div class="timer-box">
-                <div id="ex-timer" class="timer-number">45</div>
-                <span class="timer-unit">secondes restantes</span>
-            </div>
-
-            <p id="ex-desc" class="exercise-description">Description de l'exercice pour guider l'utilisateur en douceur.</p>
-            <p id="ex-tip" class="exercise-tip">Encouragement ou conseil bienveillant.</p>
-        </main>
-
-        <footer class="workout-footer">
-            <div class="control-buttons">
-                <button id="btn-prev" class="btn btn-control">⏮️ Précédent</button>
-                <button id="btn-pause" class="btn btn-control btn-accent">⏸️ Pause</button>
-                <button id="btn-next" class="btn btn-control">Suivant ⏭️</button>
-            </div>
-            <button id="btn-stop" class="btn btn-danger">⏹️ Arrêter la séance</button>
-        </footer>
-    </div>
-
-    <!-- ÉCRAN DE FIN DE SÉANCE -->
-    <div id="screen-congrats" class="screen">
-        <div class="congrats-container">
-            <div class="sun-icon">🌞</div>
-            <h2 class="congrats-title">Routine terminée !</h2>
-            <p class="congrats-subtitle">Bonne journée.</p>
-            
-            <div class="quote-box">
-                <p id="congrats-quote" class="quote-text">« La meilleure journée commence par quelques minutes pour soi. »</p>
-            </div>
-
-            <button id="btn-home-return" class="btn btn-primary">Retour à l'accueil</button>
+            <div id="countdown-display" style="font-size: 90px; font-weight: 800; text-align: center; margin: 40px 0; color: var(--accent-color);">3</div>
+            <div></div>
         </div>
-    </div>
 
-    <!-- ÉCRAN DES PARAMÈTRES -->
-    <div id="screen-settings" class="screen">
-        <header class="settings-header">
-            <h2>⚙️ Paramètres</h2>
-        </header>
-
-        <main class="settings-main">
-            <div class="setting-item">
-                <div class="setting-info">
-                    <label for="toggle-voice" class="setting-label">🔈 Activer la voix</label>
-                    <p class="setting-desc">Annonce le nom des exercices et donne le rythme.</p>
+        <div id="screen-workout" class="screen">
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; color: #a0aec0; font-size: 12px; font-weight: 600;">
+                    <span id="workout-exercise-counter">1 / 10</span>
+                    <button id="btn-stop" style="background: none; border: none; color: #e53e3e; cursor: pointer; font-weight: 600;">Quitter</button>
                 </div>
-                <div class="toggle-switch">
-                    <input type="checkbox" id="toggle-voice" checked>
-                    <span class="slider"></span>
+                
+                <div class="illustration-container" id="ex-illustration"></div>
+                <h2 id="ex-name" class="ex-title"></h2>
+                <p id="ex-desc" class="ex-text"></p>
+                <p id="ex-tip" class="ex-tip-box"></p>
+            </div>
+            
+            <div>
+                <div id="ex-timer" class="timer-display">0</div>
+                <div class="progress-bar"><div id="workout-progress-fill" class="progress-fill"></div></div>
+                
+                <div class="nav-controls">
+                    <button id="btn-prev" class="btn btn-secondary">⏮️</button>
+                    <button id="btn-pause" class="btn">⏸️ Pause</button>
+                    <button id="btn-next" class="btn btn-secondary">⏭️</button>
                 </div>
             </div>
+        </div>
 
-            <div class="setting-item danger-zone">
-                <div class="setting-info">
-                    <span class="setting-label-danger">Réinitialiser les données</span>
-                    <p class="setting-desc">Efface définitivement tout votre historique de routines.</p>
+        <div id="screen-congrats" class="screen">
+            <div style="text-align: center; margin-top: 20px;">
+                <div style="font-size: 50px; margin-bottom: 10px;">🎉</div>
+                <h1>Bravo Ninja !</h1>
+                <p class="subtitle" style="margin-bottom: 10px;">Votre corps est réveillé et disponible.</p>
+                <div id="congrats-quote" class="quote-box"></div>
+            </div>
+            <button id="btn-home-return" class="btn">🏠 Retour à l'accueil</button>
+        </div>
+
+        <div id="screen-settings" class="screen">
+            <div>
+                <h2 style="font-size: 22px; margin-bottom: 20px; text-align: center;">Réglages</h2>
+                
+                <div class="setting-row">
+                    <div>
+                        <div style="font-weight: 600; font-size: 15px;">Guidage vocal</div>
+                        <div style="font-size: 12px; color: #718096;">Dicte les consignes des postures</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-voice" checked>
+                        <span class="slider"></span>
+                    </label>
                 </div>
-                <button id="btn-reset-data" class="btn btn-danger-soft">Effacer</button>
+                
+                <button id="btn-reset-data" class="btn btn-danger">🗑️ Réinitialiser l'historique</button>
             </div>
-
-            <div class="about-box">
-                <h3>À propos</h3>
-                <p><strong>Morning Ninja</strong> est une routine de mobilité douce conçue pour réveiller le corps, délier les articulations et protéger les lombaires avant de commencer la journée.</p>
-                <p class="version-tag">Version de l'application : 1.0 (Stable)</p>
-            </div>
-        </main>
-
-        <footer class="settings-footer">
-            <button id="btn-settings-close" class="btn btn-secondary">Fermer et enregistrer</button>
-        </footer>
+            <button id="btn-settings-close" class="btn btn-secondary">Retour</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
