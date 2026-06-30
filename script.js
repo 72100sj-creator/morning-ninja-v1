@@ -103,7 +103,7 @@ const EXERCISES = [
     },
     {
         name: "6. Pont fessier",
-        desc: "Allongé sur le dos, montez le bassin vers le ciel en pushing sur vos pieds. Alignez genoux, hanches et épaules.",
+        desc: "Allongé sur le dos, montez le bassin vers le ciel en poussant sur vos pieds. Alignez genoux, hanches et épaules.",
         tip: "Contractez légèrement les fessiers en haut sans cambrer excessivement.",
         duration: 45,
         speech: "Le pont fessier. Montez le bassin en douceur pour réveiller l'arrière du corps.",
@@ -209,26 +209,7 @@ const QUOTES = [
     "La régularité bat l'intensité. Bravo pour aujourd'hui.",
     "Prendre soin de son dos, c'est préserver sa liberté de bouger.",
     "Votre corps vous remercie déjà pour ce moment de douceur.",
-    "Le mouvement, c'est la vie. La fluidité, c'est le bien-être.",
-    "Commencer la journée dans le calme permet de traverser la tempête avec sérénité.",
-    "Chaque réveil est un lever de soleil intérieur.",
-    "La souplesse de l'esprit commence par la mobilité du corps.",
-    "Offrez à votre corps la fluidité qu'il mérite.",
-    "Un réveil paisible annonce une journée claire.",
-    "Rien n'est plus puissant qu'une habitude douce pratiquée avec constance.",
-    "Cultivez le calme, la force suivra naturellement.",
-    "Aujourd'hui, offrez-vous le droit d'avancer à votre rythme.",
-    "Votre bien-être est votre priorité absolue ce matin.",
-    "Un esprit serein dans un corps délié.",
-    "Faites de votre matinée un sanctuaire de tranquillité.",
-    "La santé s'entretient par de petits gestes quotidiens.",
-    "Soyez fier d'avoir pris ces quelques minutes pour vous.",
-    "Le matin est la page blanche de votre journée. Écrivez-la bien.",
-    "La mobilité protège, la rigidité fragilise. Restez fluide.",
-    "Respirez, bougez, vivez pleinement.",
-    "La paix commence au moment où vous décidez de prendre soin de vous.",
-    "Un corps réveillé en douceur est prêt pour toutes les aventures.",
-    "Que votre journée soit aussi fluide et agréable que votre routine."
+    "Le mouvement, c'est la vie. La fluidité, c'est le bien-être."
 ];
 
 let currentExerciseIndex = 0;
@@ -237,7 +218,7 @@ let timeLeft = 0;
 let isPaused = false;
 let isTransitioning = false;
 let wakeLock = null;
-let cachedVoice = null; // Mémoire tampon pour bloquer la voix féminine d'iOS
+let cachedVoice = null;
 
 let settings = { voiceEnabled: true };
 let historyData = { totalRoutines: 0, currentStreak: 0, bestStreak: 0, lastSessionDate: "" };
@@ -312,7 +293,6 @@ function initAudioIOS() {
     }
 }
 
-// CORRECTION ICI : La fonction recherche et mémorise la voix féminine pour empêcher le bug iOS
 function speakText(text) {
     if (!settings.voiceEnabled || !('speechSynthesis' in window)) return;
     
@@ -320,7 +300,7 @@ function speakText(text) {
     
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "fr-FR";
-    utterance.rate = 0.75; // Rythme lent et relaxant
+    utterance.rate = 0.75; 
     
     if (!cachedVoice) {
         const voices = window.speechSynthesis.getVoices();
@@ -416,6 +396,7 @@ function loadExercise(index) {
     startExerciseTimer();
 }
 
+// MISE À JOUR V1.3 : La pause automatique passe maintenant à 12 secondes
 function startTransitionToNext() {
     if (currentExerciseIndex >= EXERCISES.length - 1) {
         finishWorkoutSession();
@@ -433,7 +414,7 @@ function startTransitionToNext() {
     document.getElementById("ex-tip").textContent = "Profitez de ces quelques secondes pour respirer.";
     document.getElementById("ex-illustration").innerHTML = nextEx.svg;
     
-    timeLeft = 5; // Pause de transition de 5 secondes
+    timeLeft = 12; // Modifié à 12 secondes pour la v1.3
     document.getElementById("ex-timer").textContent = timeLeft;
     
     speakText(`Attention, prochain exercice : ${nextEx.name}. Mettez-vous en place.`);
