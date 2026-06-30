@@ -4,178 +4,357 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morning Ninja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #faf8f5;
-            --text-color: #2d3748;
-            --accent-color: #4a90e2;
+            --bg-color: #fdfbf7;
+            --text-main: #2c2c2c;
+            --text-light: #7a7a7a;
+            --accent: #c5a059; /* Or doux */
             --card-bg: #ffffff;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow: 0 20px 40px rgba(0,0,0,0.03);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.5;
+            color: var(--text-main);
+            line-height: 1.6;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 15px;
+            padding: 20px;
         }
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 440px;
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 30px 24px;
+            border-radius: 40px;
+            padding: 40px 30px;
             box-shadow: var(--shadow);
             position: relative;
-            min-height: 520px;
+            min-height: 650px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            border: 1px solid rgba(197, 160, 89, 0.1);
         }
-        .screen { display: none; width: 100%; animation: fadeIn 0.4s ease; }
-        .screen.active { display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .screen { display: none; width: 100%; animation: fadeIn 0.6s ease-out; flex-direction: column; flex-grow: 1; }
+        .screen.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        h1 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 8px; color: #1a202c; }
-        .subtitle { text-align: center; color: #718096; font-size: 15px; margin-bottom: 25px; }
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 32px; text-align: center; margin-bottom: 5px; letter-spacing: -0.5px; }
+        .subtitle { text-align: center; color: var(--accent); font-style: italic; font-size: 14px; margin-bottom: 35px; font-family: 'Playfair Display', serif; }
         
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-        .stat-card { background: #f7fafc; padding: 14px; border-radius: 16px; text-align: center; border: 1px solid #edf2f7; }
-        .stat-val { font-size: 20px; font-weight: 700; color: var(--accent-color); }
-        .stat-lbl { font-size: 11px; color: #a0aec0; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-        .stat-full { grid-column: span 2; }
+        .stats-minimal { display: flex; justify-content: space-around; margin-bottom: 40px; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; padding: 20px 0; }
+        .stat-item { text-align: center; }
+        .stat-val { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-main); }
+        .stat-lbl { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
 
         .btn {
-            background: var(--accent-color); color: white; border: none; padding: 15px 20px;
-            border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer;
-            width: 100%; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px;
+            background: var(--text-main); color: white; border: none; padding: 18px;
+            border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer;
+            width: 100%; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;
         }
-        .btn:active { transform: scale(0.98); opacity: 0.9; }
-        .btn-secondary { background: #edf2f7; color: #4a5568; margin-top: 10px; }
-        .btn-danger { background: #fff5f5; color: #e53e3e; border: 1px solid #fed7d7; margin-top: 25px; }
+        .btn:active { transform: scale(0.97); }
+        .btn-secondary { background: transparent; color: var(--text-main); border: 1px solid #e0e0e0; margin-top: 15px; }
+        .btn-danger { background: #fffcfc; color: #d9534f; border: 1px solid #feebeb; margin-top: 30px; }
 
-        .illustration-container { height: 180px; margin: 15px 0; display: flex; justify-content: center; align-items: center; }
-        .timer-display { font-size: 54px; font-weight: 800; text-align: center; margin: 10px 0; color: #1a202c; font-variant-numeric: tabular-nums; }
-        .ex-title { font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 6px; }
-        .ex-text { color: #4a5568; text-align: center; font-size: 14px; margin-bottom: 10px; padding: 0 10px; }
-        .ex-tip-box { background: #ebf8ff; border-left: 4px solid #4299e1; padding: 10px 12px; border-radius: 0 12px 12px 0; font-size: 12px; color: #2b6cb0; margin-top: 10px; }
+        .illustration-container { height: 220px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; }
+        .timer-display { font-family: 'Playfair Display', serif; font-size: 70px; text-align: center; margin-bottom: 10px; color: var(--text-main); }
+        .ex-title { font-family: 'Playfair Display', serif; font-size: 22px; text-align: center; margin-bottom: 10px; }
+        .ex-text { color: var(--text-light); text-align: center; font-size: 15px; font-weight: 300; padding: 0 15px; }
+        .ex-tip-box { font-style: italic; text-align: center; font-size: 13px; color: var(--accent); margin-top: 15px; }
         
-        .progress-bar { width: 100%; height: 6px; background: #edf2f7; border-radius: 3px; margin-top: 20px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--accent-color); width: 0%; transition: width 0.3s ease; }
-        .nav-controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
-        .nav-controls .btn { padding: 12px 10px; font-size: 14px; }
+        .progress-container { width: 60px; height: 3px; background: #f0f0f0; margin: 20px auto; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s ease; }
         
-        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #edf2f7; }
-        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .nav-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; gap: 15px; }
+        .nav-btn { background: none; border: 1px solid #f0f0f0; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; color: var(--text-light); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-pause-main { flex-grow: 1; border-radius: 100px; padding: 15px; background: var(--bg-color); color: var(--text-main); border: 1px solid var(--text-main); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #f9f9f9; }
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e0; transition: .3s; border-radius: 24px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
-        input:checked + .slider { background-color: #48bb78; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #eee; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--accent); }
         input:checked + .slider:before { transform: translateX(20px); }
         
-        .quote-box { font-style: italic; text-align: center; color: #4a5568; padding: 20px 10px; margin-bottom: 20px; font-size: 15px; line-height: 1.6; }
-        .version-tag { text-align: center; font-size: 11px; color: #cbd5e0; margin-top: 20px; width: 100%; }
+        .version-tag { text-align: center; font-size: 9px; color: #ddd; margin-top: auto; padding-top: 20px; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div id="screen-home" class="screen active">
-            <div>
-                <h1>Morning Ninja</h1>
-                <p class="subtitle">Réveil musculaire & mobilité douce</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div id="stat-current-streak" class="stat-val">0</div>
-                        <div class="stat-lbl">Série Actuelle</div>
-                    </div>
-                    <div class="stat-card">
-                        <div id="stat-best-streak" class="stat-val">0</div>
-                        <div class="stat-lbl">Meilleure Série</div>
-                    </div>
-                    <div class="stat-card stat-full">
-                        <div id="stat-total-routines" class="stat-val">0</div>
-                        <div class="stat-lbl">Routines Complétées</div>
-                    </div>
-                    <div id="stat-last-session" class="stat-lbl stat-full" style="text-align: center; margin-top: 5px; color:#718096;"></div>
+            <div class="logo-container">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" stroke="#c5a059" stroke-width="0.5" stroke-dasharray="2 4"/>
+                    <path d="M30 65C30 65 35 50 50 50C65 50 70 65 70 65" stroke="#2c2c2c" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="50" cy="40" r="8" fill="#c5a059" opacity="0.8"/>
+                </svg>
+            </div>
+            <h1>Morning Ninja</h1>
+            <p class="subtitle">L'art de l'éveil matinal</p>
+            
+            <div class="stats-minimal">
+                <div class="stat-item">
+                    <div id="stat-current-streak" class="stat-val">0</div>
+                    <div class="stat-lbl">Série</div>
+                </div>
+                <div class="stat-item">
+                    <div id="stat-total-routines" class="stat-val">0</div>
+                    <div class="stat-lbl">Total</div>
                 </div>
             </div>
             
-            <div>
-                <button id="btn-start" class="btn">🌅 Commencer la routine</button>
-                <button id="btn-settings-open" class="btn btn-secondary">⚙️ Réglages</button>
-                <div class="version-tag">Version 1.3</div>
+            <div style="margin-top: auto;">
+                <button id="btn-start" class="btn">Commencer la séance</button>
+                <button id="btn-settings-open" class="btn btn-secondary">Réglages</button>
+                <div class="version-tag">Version 1.4</div>
             </div>
         </div>
 
         <div id="screen-prepare" class="screen">
-            <div style="text-align: center; margin-top: 40px;">
-                <h2 style="font-size: 24px; margin-bottom: 10px;">Préparez-vous...</h2>
-                <p id="countdown-text" style="color: #718096;"></p>
+            <div style="text-align: center; margin-top: 60px;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 28px;">Sérénité</h2>
+                <p id="countdown-text" style="color: var(--accent); font-style: italic; margin-top: 10px;">Trouvez votre souffle...</p>
             </div>
-            <div id="countdown-display" style="font-size: 90px; font-weight: 800; text-align: center; margin: 40px 0; color: var(--accent-color);">3</div>
-            <div></div>
+            <div id="countdown-display" style="font-family: 'Playfair Display', serif; font-size: 120px; text-align: center; margin: 40px 0;">3</div>
         </div>
 
         <div id="screen-workout" class="screen">
-            <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; color: #a0aec0; font-size: 12px; font-weight: 600;">
-                    <span id="workout-exercise-counter">1 / 10</span>
-                    <button id="btn-stop" style="background: none; border: none; color: #e53e3e; cursor: pointer; font-weight: 600;">Quitter</button>
-                </div>
-                
-                <div class="illustration-container" id="ex-illustration"></div>
-                <h2 id="ex-name" class="ex-title"></h2>
-                <p id="ex-desc" class="ex-text"></p>
-                <p id="ex-tip" class="ex-tip-box"></p>
+            <div style="display: flex; justify-content: space-between; align-items: center; color: #ddd; font-size: 10px; letter-spacing: 2px;">
+                <span id="workout-exercise-counter">I / X</span>
+                <span id="btn-stop" style="cursor: pointer; color: var(--text-light)">QUITTER</span>
             </div>
             
-            <div>
+            <div class="illustration-container" id="ex-illustration"></div>
+            <h2 id="ex-name" class="ex-title"></h2>
+            <p id="ex-desc" class="ex-text"></p>
+            <p id="ex-tip" class="ex-tip-box"></p>
+            
+            <div style="margin-top: auto;">
                 <div id="ex-timer" class="timer-display">0</div>
-                <div class="progress-bar"><div id="workout-progress-fill" class="progress-fill"></div></div>
+                <div class="progress-container"><div id="workout-progress-fill" class="progress-fill"></div></div>
                 
                 <div class="nav-controls">
-                    <button id="btn-prev" class="btn btn-secondary">⏮️</button>
-                    <button id="btn-pause" class="btn">⏸️ Pause</button>
-                    <button id="btn-next" class="btn btn-secondary">⏭️</button>
+                    <button id="btn-prev" class="nav-btn">←</button>
+                    <button id="btn-pause" class="btn-pause-main">Pause</button>
+                    <button id="btn-next" class="nav-btn">→</button>
                 </div>
             </div>
         </div>
 
         <div id="screen-congrats" class="screen">
-            <div style="text-align: center; margin-top: 20px;">
-                <div style="font-size: 50px; margin-bottom: 10px;">🎉</div>
-                <h1>Bravo Ninja !</h1>
-                <p class="subtitle" style="margin-bottom: 10px;">Votre corps est réveillé et disponible.</p>
-                <div id="congrats-quote" class="quote-box"></div>
+            <div style="text-align: center; margin-top: 40px;">
+                <h1 style="font-size: 40px;">Éveillé.</h1>
+                <p class="subtitle">Une journée sereine vous attend.</p>
+                <div id="congrats-quote" style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-light); margin: 40px 0; line-height: 1.8;"></div>
             </div>
-            <button id="btn-home-return" class="btn">🏠 Retour à l'accueil</button>
+            <button id="btn-home-return" class="btn">Terminer</button>
         </div>
 
         <div id="screen-settings" class="screen">
-            <div>
-                <h2 style="font-size: 22px; margin-bottom: 20px; text-align: center;">Réglages</h2>
-                
-                <div class="setting-row">
-                    <div>
-                        <div style="font-weight: 600; font-size: 15px;">Guidage vocal</div>
-                        <div style="font-size: 12px; color: #718096;">Dicte les consignes des postures</div>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="toggle-voice" checked>
-                        <span class="slider"></span>
-                    </label>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 40px; text-align: center;">Réglages</h2>
+            
+            <div class="setting-row">
+                <div>
+                    <div style="font-weight: 600; font-size: 14px;">Guidage Vocal</div>
+                    <div style="font-size: 11px; color: var(--text-light);">Dicte les consigne doucement</div>
                 </div>
-                
-                <button id="btn-reset-data" class="btn btn-danger">🗑️ Réinitialiser l'historique</button>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-voice" checked>
+                    <span class="slider"></span>
+                </label>
             </div>
-            <button id="btn-settings-close" class="btn btn-secondary">Retour</button>
+            
+            <button id="btn-reset-data" class="btn btn-danger">Effacer l'historique</button>
+            <button id="btn-settings-close" class="btn btn-secondary" style="margin-top: auto;">Retour</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Ninja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --text-main: #2c2c2c;
+            --text-light: #7a7a7a;
+            --accent: #c5a059; /* Or doux */
+            --card-bg: #ffffff;
+            --shadow: 0 20px 40px rgba(0,0,0,0.03);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border-radius: 40px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            min-height: 650px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+        }
+        .screen { display: none; width: 100%; animation: fadeIn 0.6s ease-out; flex-direction: column; flex-grow: 1; }
+        .screen.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 32px; text-align: center; margin-bottom: 5px; letter-spacing: -0.5px; }
+        .subtitle { text-align: center; color: var(--accent); font-style: italic; font-size: 14px; margin-bottom: 35px; font-family: 'Playfair Display', serif; }
+        
+        .stats-minimal { display: flex; justify-content: space-around; margin-bottom: 40px; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; padding: 20px 0; }
+        .stat-item { text-align: center; }
+        .stat-val { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-main); }
+        .stat-lbl { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+
+        .btn {
+            background: var(--text-main); color: white; border: none; padding: 18px;
+            border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer;
+            width: 100%; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn-secondary { background: transparent; color: var(--text-main); border: 1px solid #e0e0e0; margin-top: 15px; }
+        .btn-danger { background: #fffcfc; color: #d9534f; border: 1px solid #feebeb; margin-top: 30px; }
+
+        .illustration-container { height: 220px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; }
+        .timer-display { font-family: 'Playfair Display', serif; font-size: 70px; text-align: center; margin-bottom: 10px; color: var(--text-main); }
+        .ex-title { font-family: 'Playfair Display', serif; font-size: 22px; text-align: center; margin-bottom: 10px; }
+        .ex-text { color: var(--text-light); text-align: center; font-size: 15px; font-weight: 300; padding: 0 15px; }
+        .ex-tip-box { font-style: italic; text-align: center; font-size: 13px; color: var(--accent); margin-top: 15px; }
+        
+        .progress-container { width: 60px; height: 3px; background: #f0f0f0; margin: 20px auto; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s ease; }
+        
+        .nav-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; gap: 15px; }
+        .nav-btn { background: none; border: 1px solid #f0f0f0; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; color: var(--text-light); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-pause-main { flex-grow: 1; border-radius: 100px; padding: 15px; background: var(--bg-color); color: var(--text-main); border: 1px solid var(--text-main); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #f9f9f9; }
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #eee; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--accent); }
+        input:checked + .slider:before { transform: translateX(20px); }
+        
+        .version-tag { text-align: center; font-size: 9px; color: #ddd; margin-top: auto; padding-top: 20px; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="screen-home" class="screen active">
+            <div class="logo-container">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" stroke="#c5a059" stroke-width="0.5" stroke-dasharray="2 4"/>
+                    <path d="M30 65C30 65 35 50 50 50C65 50 70 65 70 65" stroke="#2c2c2c" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="50" cy="40" r="8" fill="#c5a059" opacity="0.8"/>
+                </svg>
+            </div>
+            <h1>Morning Ninja</h1>
+            <p class="subtitle">L'art de l'éveil matinal</p>
+            
+            <div class="stats-minimal">
+                <div class="stat-item">
+                    <div id="stat-current-streak" class="stat-val">0</div>
+                    <div class="stat-lbl">Série</div>
+                </div>
+                <div class="stat-item">
+                    <div id="stat-total-routines" class="stat-val">0</div>
+                    <div class="stat-lbl">Total</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: auto;">
+                <button id="btn-start" class="btn">Commencer la séance</button>
+                <button id="btn-settings-open" class="btn btn-secondary">Réglages</button>
+                <div class="version-tag">Version 1.4</div>
+            </div>
+        </div>
+
+        <div id="screen-prepare" class="screen">
+            <div style="text-align: center; margin-top: 60px;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 28px;">Sérénité</h2>
+                <p id="countdown-text" style="color: var(--accent); font-style: italic; margin-top: 10px;">Trouvez votre souffle...</p>
+            </div>
+            <div id="countdown-display" style="font-family: 'Playfair Display', serif; font-size: 120px; text-align: center; margin: 40px 0;">3</div>
+        </div>
+
+        <div id="screen-workout" class="screen">
+            <div style="display: flex; justify-content: space-between; align-items: center; color: #ddd; font-size: 10px; letter-spacing: 2px;">
+                <span id="workout-exercise-counter">I / X</span>
+                <span id="btn-stop" style="cursor: pointer; color: var(--text-light)">QUITTER</span>
+            </div>
+            
+            <div class="illustration-container" id="ex-illustration"></div>
+            <h2 id="ex-name" class="ex-title"></h2>
+            <p id="ex-desc" class="ex-text"></p>
+            <p id="ex-tip" class="ex-tip-box"></p>
+            
+            <div style="margin-top: auto;">
+                <div id="ex-timer" class="timer-display">0</div>
+                <div class="progress-container"><div id="workout-progress-fill" class="progress-fill"></div></div>
+                
+                <div class="nav-controls">
+                    <button id="btn-prev" class="nav-btn">←</button>
+                    <button id="btn-pause" class="btn-pause-main">Pause</button>
+                    <button id="btn-next" class="nav-btn">→</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-congrats" class="screen">
+            <div style="text-align: center; margin-top: 40px;">
+                <h1 style="font-size: 40px;">Éveillé.</h1>
+                <p class="subtitle">Une journée sereine vous attend.</p>
+                <div id="congrats-quote" style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-light); margin: 40px 0; line-height: 1.8;"></div>
+            </div>
+            <button id="btn-home-return" class="btn">Terminer</button>
+        </div>
+
+        <div id="screen-settings" class="screen">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 40px; text-align: center;">Réglages</h2>
+            
+            <div class="setting-row">
+                <div>
+                    <div style="font-weight: 600; font-size: 14px;">Guidage Vocal</div>
+                    <div style="font-size: 11px; color: var(--text-light);">Dicte les consigne doucement</div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-voice" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button id="btn-reset-data" class="btn btn-danger">Effacer l'historique</button>
+            <button id="btn-settings-close" class="btn btn-secondary" style="margin-top: auto;">Retour</button>
         </div>
     </div>
 
