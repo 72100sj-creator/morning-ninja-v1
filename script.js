@@ -5,7 +5,20 @@ const EXERCISES = [
         tip: "Posez les mains sur votre ventre pour ressentir le mouvement du calme.",
         duration: 45,
         speech: "Commencez par une respiration consciente. Inspirez le calme, expirez les tensions.",
-        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4a90e2" />
+                    <stop offset="100%" stop-color="#50e3c2" />
+                </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="35" fill="url(#grad1)" opacity="0.15"/>
+            <circle cx="50" cy="50" r="22" fill="none" stroke="url(#grad1)" stroke-width="3" stroke-linecap="round">
+                <animate attributeName="r" values="16;28;16" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.4;1;0.4" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="50" cy="50" r="6" fill="url(#grad1)"/>
+        </svg>`
     },
     {
         name: "2. Bascule du bassin",
@@ -13,7 +26,21 @@ const EXERCISES = [
         tip: "Mouvement très léger, idéal pour masser et libérer les lombaires.",
         duration: 45,
         speech: "Bascule du bassin. Pressez doucement le bas du dos contre le sol en soufflant.",
-        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ff9f43" />
+                    <stop offset="100%" stop-color="#ff6b6b" />
+                </linearGradient>
+            </defs>
+            <path d="M15 75 C 35 75, 45 55, 85 75" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round"/>
+            <path d="M25 75 C 40 75, 50 62, 75 75" fill="none" stroke="url(#grad2)" stroke-width="5" stroke-linecap="round">
+                <animate attributeName="d" values="M25 75 C 40 75, 50 62, 75 75; M25 75 C 40 75, 50 74, 75 75; M25 75 C 40 75, 50 62, 75 75" dur="4s" repeatCount="indefinite"/>
+            </path>
+            <circle cx="50" cy="68" r="4" fill="#ff6b6b">
+                <animate attributeName="cy" values="65;74;65" dur="4s" repeatCount="indefinite"/>
+            </circle>
+        </svg>`
     },
     {
         name: "3. Chat / Vache",
@@ -21,7 +48,19 @@ const EXERCISES = [
         tip: "Ne forcez pas sur le creux. Bougez au rythme de votre respiration.",
         duration: 50,
         speech: "Position du Chat et de la Vache. Enroulez et déroulez votre colonne vertébrale.",
-        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1dd1a1" />
+                    <stop offset="100%" stop-color="#10ac84" />
+                </linearGradient>
+            </defs>
+            <path d="M20 65 Q 50 40, 80 65" fill="none" stroke="url(#grad3)" stroke-width="5" stroke-linecap="round">
+                <animate attributeName="d" values="M20 65 Q 50 40, 80 65; M20 60 Q 50 75, 80 60; M20 65 Q 50 40, 80 65" dur="5s" repeatCount="indefinite"/>
+            </path>
+            <line x1="30" y1="63" x2="30" y2="82" stroke="#48dbfb" stroke-width="4" stroke-linecap="round"/>
+            <line x1="70" y1="63" x2="70" y2="82" stroke="#48dbfb" stroke-width="4" stroke-linecap="round"/>
+        </svg>`
     },
     {
         name: "4. Bird Dog (Oiseau-Chien)",
@@ -29,7 +68,20 @@ const EXERCISES = [
         tip: "Cherchez à vous grandir plutôt qu'à monter les membres trop haut.",
         duration: 50,
         speech: "L'Oiseau Chien. Tendez un bras et la jambe opposée pour stabiliser le dos.",
-        image: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#a55eea" />
+                    <stop offset="100%" stop-color="#4b7bec" />
+                </linearGradient>
+            </defs>
+            <rect x="35" y="52" width="30" height="6" rx="3" fill="#20bf6b"/>
+            <path d="M15 55 L 35 55 M 65 55 L 85 55" fill="none" stroke="url(#grad4)" stroke-width="4" stroke-linecap="round">
+                <animate attributeName="stroke-width" values="4;2;4" dur="4s" repeatCount="indefinite"/>
+            </path>
+            <line x1="42" y1="58" x2="42" y2="78" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+            <line x1="58" y1="58" x2="58" y2="78" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+        </svg>`
     },
     {
         name: "5. Ouverture des hanches",
@@ -37,7 +89,17 @@ const EXERCISES = [
         tip: "Gardez le buste bien droit et fier, respirez tranquillement.",
         duration: 50,
         speech: "Ouverture des hanches. Étirez le psoas pour libérer les tensions du bas du dos.",
-        image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ff4757" />
+                    <stop offset="100%" stop-color="#ff6b81" />
+                </linearGradient>
+            </defs>
+            <path d="M25 75 L 50 75 L 75 45 L 75 25" fill="none" stroke="url(#grad5)" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="75" cy="16" r="6" fill="#ffa502"/>
+            <circle cx="50" cy="75" r="3" fill="#fff"/>
+        </svg>`
     },
     {
         name: "6. Pont fessier",
@@ -45,7 +107,18 @@ const EXERCISES = [
         tip: "Contractez légèrement les fessiers en haut sans cambrer excessivement.",
         duration: 45,
         speech: "Le pont fessier. Montez le bassin en douceur pour réveiller l'arrière du corps.",
-        image: "https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2ed573" />
+                    <stop offset="100%" stop-color="#7bed9f" />
+                </linearGradient>
+            </defs>
+            <path d="M15 75 L 50 75 L 85 75" fill="none" stroke="#e0e0e0" stroke-width="2"/>
+            <path d="M15 75 L 50 50 L 85 75" fill="none" stroke="url(#grad6)" stroke-width="5" stroke-linecap="round">
+                <animate attributeName="d" values="M15 75 L 50 75 L 85 75; M15 75 L 50 48 L 85 75; M15 75 L 50 75 L 85 75" dur="4s" repeatCount="indefinite"/>
+            </path>
+        </svg>`
     },
     {
         name: "7. Rotation thoracique",
@@ -53,7 +126,19 @@ const EXERCISES = [
         tip: "Suivez le mouvement du coude avec votre regard. Changez de côté à votre rythme.",
         duration: 50,
         speech: "Rotation thoracique. Ouvrez le haut du dos pour libérer la respiration.",
-        image: "https://images.unsplash.com/photo-1591228127791-8e2eaef098d3?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1e90ff" />
+                    <stop offset="100%" stop-color="#70a1ff" />
+                </linearGradient>
+            </defs>
+            <line x1="25" y1="65" x2="75" y2="65" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+            <path d="M50 65 L 75 35" fill="none" stroke="url(#grad7)" stroke-width="5" stroke-linecap="round">
+                <animateTransform attributeName="transform" type="rotate" from="0 50 65" to="-40 50 65" dur="3s" repeatCount="indefinite" alternate="yes"/>
+            </path>
+            <circle cx="50" cy="65" r="4" fill="#ff4757"/>
+        </svg>`
     },
     {
         name: "8. Étirement des ischio-jambiers",
@@ -61,7 +146,18 @@ const EXERCISES = [
         tip: "Gardez le pied souple. L'étirement doit être progressif et ne jamais faire mal.",
         duration: 45,
         speech: "Étirement de l'arrière des cuisses. Allez-y très doucement, sans à-coups.",
-        image: "https://images.unsplash.com/photo-1510832428577-cef512ef7a09?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad8" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffa502" />
+                    <stop offset="100%" stop-color="#ff7f50" />
+                </linearGradient>
+            </defs>
+            <line x1="15" y1="75" x2="75" y2="75" stroke="#ccc" stroke-width="3" stroke-linecap="round"/>
+            <line x1="45" y1="75" x2="45" y2="30" stroke="url(#grad8)" stroke-width="5" stroke-linecap="round">
+                <animate attributeName="x2" values="45;58;45" dur="4s" repeatCount="indefinite"/>
+            </line>
+        </svg>`
     },
     {
         name: "9. Ouverture des épaules",
@@ -69,7 +165,17 @@ const EXERCISES = [
         tip: "Sentez l'ouverture du cœur et l'espace qui se crée au niveau des clavicules.",
         duration: 40,
         speech: "Ouverture des épaules et de la poitrine. Grandissez-vous et respirez.",
-        image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad9" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3742fa" />
+                    <stop offset="100%" stop-color="#f1f2f6" />
+                </linearGradient>
+            </defs>
+            <circle cx="50" cy="28" r="7" fill="#3742fa"/>
+            <path d="M50 35 Q 30 48, 50 78" fill="none" stroke="url(#grad9)" stroke-width="5" stroke-linecap="round"/>
+            <path d="M50 35 Q 70 42, 58 55" fill="none" stroke="#2ed573" stroke-width="4" stroke-linecap="round"/>
+        </svg>`
     },
     {
         name: "10. Respiration finale",
@@ -77,7 +183,18 @@ const EXERCISES = [
         tip: "Souriez. Votre corps est maintenant réveillé, disponible et prêt.",
         duration: 40,
         speech: "Terminez par une grande inspiration en montant les bras au ciel. Votre corps est parfaitement réveillé.",
-        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80"
+        svg: `<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad10" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffd32a" />
+                    <stop offset="100%" stop-color="#ff9f43" />
+                </linearGradient>
+            </defs>
+            <circle cx="50" cy="55" r="16" fill="url(#grad10)" opacity="0.8">
+                <animate attributeName="r" values="12;20;12" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <path d="M15 45 Q 50 15, 85 45" fill="none" stroke="#ffaf40" stroke-width="3" stroke-dasharray="5 5"/>
+        </svg>`
     }
 ];
 
@@ -118,6 +235,7 @@ let currentExerciseIndex = 0;
 let exerciseTimerInterval = null;
 let timeLeft = 0;
 let isPaused = false;
+let isTransitioning = false; // Nouvelle variable d'état pour gérer le temps de pause
 let wakeLock = null;
 
 let settings = { voiceEnabled: true };
@@ -175,7 +293,7 @@ function setupEventListeners() {
     });
     document.getElementById("btn-settings-close").addEventListener("click", () => showScreen("screen-home"));
     document.getElementById("btn-pause").addEventListener("click", togglePause);
-    document.getElementById("btn-next").addEventListener("click", nextExercise);
+    document.getElementById("btn-next").addEventListener("click", forceNextExercise);
     document.getElementById("btn-prev").addEventListener("click", previousExercise);
     document.getElementById("btn-stop").addEventListener("click", () => {
         if (confirm("Arrêter la séance en cours ? VOS PROGRÈS NE SERONT PAS SAUVÉS.")) {
@@ -200,7 +318,7 @@ function speakText(text) {
     
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "fr-FR";
-    utterance.rate = 0.85;
+    utterance.rate = 0.75; // Garde la vitesse douce et ralentie
     
     const voices = window.speechSynthesis.getVoices();
     let selectedVoice = voices.find(v => v.lang.includes("fr") && 
@@ -251,22 +369,21 @@ function startPreparationCountdown() {
 function startWorkoutSession() {
     currentExerciseIndex = 0;
     isPaused = false;
+    isTransitioning = false;
     requestWakeLock();
     showScreen("screen-workout");
     loadExercise(currentExerciseIndex);
 }
 
-// MISE À JOUR ICI : injection d'une balise IMG à la place du SVG avec styles pour le rendu
 function loadExercise(index) {
     if (index < 0 || index >= EXERCISES.length) return;
     const ex = EXERCISES[index];
     
+    isTransitioning = false;
     document.getElementById("ex-name").textContent = ex.name;
     document.getElementById("ex-desc").textContent = ex.desc;
     document.getElementById("ex-tip").textContent = ex.tip;
-    
-    // Remplacement du SVG par l'image Unsplash
-    document.getElementById("ex-illustration").innerHTML = `<img src="${ex.image}" alt="${ex.name}" style="width:100%; height:100%; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">`;
+    document.getElementById("ex-illustration").innerHTML = ex.svg; // Réintégration propre des SVG
     
     timeLeft = ex.duration;
     document.getElementById("ex-timer").textContent = timeLeft;
@@ -282,6 +399,42 @@ function loadExercise(index) {
     startExerciseTimer();
 }
 
+// Nouvelle fonction pour gérer la pause de 5 secondes pour se mettre en place
+function startTransitionToNext() {
+    if (currentExerciseIndex >= EXERCISES.length - 1) {
+        finishWorkoutSession();
+        return;
+    }
+
+    isTransitioning = true;
+    clearInterval(exerciseTimerInterval);
+    
+    currentExerciseIndex++;
+    const nextEx = EXERCISES[currentExerciseIndex];
+    
+    // Interface en mode "Transition"
+    document.getElementById("ex-name").textContent = `Prochain : ${nextEx.name}`;
+    document.getElementById("ex-desc").textContent = "Mise en place... Prenez votre position.";
+    document.getElementById("ex-tip").textContent = "Profitez de ces quelques secondes pour respirer.";
+    document.getElementById("ex-illustration").innerHTML = nextEx.svg; // Affiche déjà le SVG suivant en transparence/fixe
+    
+    timeLeft = 5; // 5 secondes de pause
+    document.getElementById("ex-timer").textContent = timeLeft;
+    
+    speakText(`Attention, prochain exercice : ${nextEx.name}. Mettez-vous en place.`);
+    
+    exerciseTimerInterval = setInterval(() => {
+        if (!isPaused) {
+            timeLeft--;
+            document.getElementById("ex-timer").textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(exerciseTimerInterval);
+                loadExercise(currentExerciseIndex);
+            }
+        }
+    }, 1000);
+}
+
 function startExerciseTimer() {
     clearInterval(exerciseTimerInterval);
     exerciseTimerInterval = setInterval(() => {
@@ -290,7 +443,7 @@ function startExerciseTimer() {
             document.getElementById("ex-timer").textContent = timeLeft;
             if (timeLeft <= 0) {
                 clearInterval(exerciseTimerInterval);
-                nextExercise();
+                startTransitionToNext(); // Lance la pause de transition plutôt que de forcer la suite
             }
         }
     }, 1000);
@@ -308,13 +461,19 @@ function togglePause() {
     }
 }
 
-function nextExercise() {
+// Si l'utilisateur clique sur le bouton "Suivant" manuellement
+function forceNextExercise() {
     clearInterval(exerciseTimerInterval);
-    if (currentExerciseIndex < EXERCISES.length - 1) {
-        currentExerciseIndex++;
+    if (isTransitioning) {
+        // Si on était en pause de transition, on force le début immédiat de l'exercice
         loadExercise(currentExerciseIndex);
     } else {
-        finishWorkoutSession();
+        // Sinon, on bascule sur la transition de l'exercice d'après
+        if (currentExerciseIndex < EXERCISES.length - 1) {
+            startTransitionToNext();
+        } else {
+            finishWorkoutSession();
+        }
     }
 }
 
@@ -322,7 +481,7 @@ function previousExercise() {
     if (currentExerciseIndex > 0) {
         clearInterval(exerciseTimerInterval);
         currentExerciseIndex--;
-        loadExercise(currentExerciseIndex);
+        loadExercise(currentExerciseIndex); // Retour direct sans transition
     }
 }
 
