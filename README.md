@@ -22,4 +22,11 @@ Ce projet est le fruit d'une collaboration unique entre un humain passionné de 
 
 De la structure initiale du code en JavaScript jusqu'aux micro-ajustements essentiels — comme l'optimisation de la vitesse de la voix pour une ambiance plus relaxante ou la transition vers des visuels libres de droits — chaque ligne de cette application a été développée et perfectionnée main dans la main avec l'IA pour offrir l'expérience utilisateur la plus fluide et bienveillante possible.
 
-Prenez quelques minutes pour vous chaque matin. Votre corps vous remerciera toute la journée.
+> ### 📝 Changelog — v1.2
+> 
+> 
+> * **Retour aux sources graphiques :** Réintégration des SVG animés (Style A), plus légers et épurés.
+> * **Gestion du rythme (Mode Zen) :** Ajout d'un compte à rebours automatique de 5 secondes entre chaque exercice pour se mettre en place sans se presser.
+> * **Guidage audio prédictif :** La voix annonce le prochain exercice dès le début de la transition.
+> * **Vitesse vocale optimisée :** Maintien du rythme ralenti ($0.75$) pour une ambiance relaxante.
+> 
