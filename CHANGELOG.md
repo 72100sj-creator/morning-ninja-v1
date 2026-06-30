@@ -11,3 +11,8 @@
 * **Extension du Mode Zen :** Allongement du temps de pause automatique entre chaque exercice à 12 secondes pour un confort de mise en place optimal.
 * **Affichage de version :** Ajout de l'indicateur visuel "v1.3" en bas de l'écran d'accueil pour le suivi du développement.
 * **Mémorisation vocale d'iOS :** Intégration définitive du correctif anti-rebasculement vocal d'Apple.
+### 📝 Changelog — v1.4
+* **Design "Élégance Pure" :** Refonte visuelle complète. Utilisation de la police 'Playfair Display' pour un look haut de gamme.
+* **Nouvelle Identité Visuelle :** Remplacement des icônes génériques par un logo sophistiqué en SVG (Cercle Zen & Soleil Levant).
+* **Palette de couleurs "Sérénité" :** Tons Sable, Anthracite et Or doux.
+* **Interface épurée :** Suppression des bordures lourdes pour un effet de "flottaison" des éléments.
